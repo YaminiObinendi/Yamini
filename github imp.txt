@@ -1,0 +1,78 @@
+1. def length_of_last_word(s):
+    # Split the string into words
+    words = s.split()
+
+    # Check if there are any words
+    if len(words) == 0:
+        return 0
+
+    # Return the length of the last word
+    return len(words[-1])
+
+# Example usage:
+input_string =input(" ")
+result = length_of_last_word(input_string)
+print( result)
+
+
+
+2. def majority_elements(nums):
+    if not nums:
+        return []
+
+    candidate1, candidate2, count1, count2 = 0, 1, 0, 0
+
+    for num in nums:
+        if num == candidate1:
+            count1 += 1
+        elif num == candidate2:
+            count2 += 1
+        elif count1 == 0:
+            candidate1, count1 = num, 1
+        elif count2 == 0:
+            candidate2, count2 = num, 1
+        else:
+            count1 -= 1
+            count2 -= 1
+
+    count1, count2 = 0, 0
+    for num in nums:
+        if num == candidate1:
+            count1 += 1
+        elif num == candidate2:
+            count2 += 1
+
+    n = len(nums)
+    result = []
+    if count1 > n // 3:
+        result.append(candidate1)
+    if count2 > n // 3:
+        result.append(candidate2)
+
+    return result
+#example
+nums = [3, 2, 3]
+result = majority_elements(nums)
+print(result)
+
+3. def count_digit_one(n):
+    if n <= 0:
+        return 0
+
+    count = 0
+    factor = 1
+
+    while factor <= n:
+        # Calculate the contribution of the current position
+        quotient, remainder = divmod(n, factor * 10)
+        count += quotient * factor + min(max(remainder - factor + 1, 0), factor)
+
+        # Move to the next position
+        factor *= 10
+
+    return count
+
+# Example usage:
+n = int(input())
+result = count_digit_one(n)
+print(result)
