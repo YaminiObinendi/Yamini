@@ -1,0 +1,21 @@
+def count_digit_one(n):
+    if n <= 0:
+        return 0
+
+    count = 0
+    factor = 1
+
+    while factor <= n:
+        # Calculate the contribution of the current position
+        quotient, remainder = divmod(n, factor * 10)
+        count += quotient * factor + min(max(remainder - factor + 1, 0), factor)
+
+        # Move to the next position
+        factor *= 10
+
+    return count
+
+# Example usage:
+n = int(input())
+result = count_digit_one(n)
+print(result)
