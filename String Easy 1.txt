@@ -1,4 +1,4 @@
-1. def length_of_last_word(s):
+ def length_of_last_word(s):
     # Split the string into words
     words = s.split()
 
